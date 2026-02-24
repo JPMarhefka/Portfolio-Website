@@ -49,11 +49,11 @@ const project = {
   hero: {
     title: "Autonomous Laser Guided Drone",
     status: "Prototype in integration",
-    subtitle: "IR beacon tracking at 38 kHz, real-time control scaffolding at 100 Hz, and a telemetry UI that makes behavior visible.",
-    body: "This project is an autonomy prototype built around a simple promise: the drone should be able to find a reflected IR beacon, confirm it is real, align its heading, and begin a controlled approach without guessing. I chose IR because it is deceptively hard in the real world. Reflections flicker, sunlight and heat sources add interference, and noisy signals can trigger false locks if you rely on a single threshold. The core of the system is not just detection, it is confidence and state transitions that remain predictable under noise.",
+    subtitle: "IR beacon tracking, real-time control loop, and a telemetry UI that makes behavior visible.",
+    body: "This project is an autonomous prototype that aims to fill a gap in current drone technology. Many drones in use today require a great deal of skill and finesse to become proficient at flying. Imagine just being able to point an invisible laser in a given direction, and it moves towards it.",
   },
   mission:
-    "Build an autonomy loop that can be tested like a system, not a magic demo. The goal is to detect a known IR signature reflected off a target surface, confirm lock using time-based consistency checks, and then use a coarse-to-fine sensor layout to estimate direction and refine angle. A key requirement is observability. Every major decision in the autonomy flow should be visible in telemetry so I can debug quickly and explain behavior clearly during integration.",
+    "The goal is to detect a known IR signature reflected off a target surface, confirm lock using time-based consistency checks, and then use a coarse-to-fine sensor layout to estimate direction and refine angle. A key requirement is observability. Every major decision in the autonomy flow should be visible in telemetry so I can debug quickly and explain behavior clearly during integration.",
   constraints:
     "IR tracking is sensitive to conditions you cannot fully control. Ambient IR from sunlight can swamp receivers, reflections change with surface material and angle, and noise spikes can look like real targets if the logic is too eager. I designed the system around two constraints. First, the target signal must be recognizable, so the beacon is modulated at 38 kHz to match the TSOP38238 receiver carrier behavior. Second, lock must be earned over time, not triggered instantly, so detection uses thresholding plus a sliding window confirmation step before the system commits to a new state. These choices reduce false positives and make the behavior more repeatable during integration.",
   build:
@@ -455,13 +455,13 @@ Beacon ESP32 PWM (38 kHz) → reflected IR → TSOP38238 array → lock + tracki
               <h2>Contact</h2>
               <p className={styles.sectionCopy}>{project.contact}</p>
               <div className={styles.contactActions}>
-                <a className={styles.primaryButton} href="mailto:you@example.com">
+                <a className={styles.primaryButton} href="mailto:jmarhefka@scu.edu">
                   Email
                 </a>
-                <a className={styles.secondaryButton} href="https://www.linkedin.com" target="_blank" rel="noreferrer">
+                <a className={styles.secondaryButton} href="https://www.linkedin.com/in/jp-marhefka/" target="_blank" rel="noreferrer">
                   LinkedIn
                 </a>
-                <a className={styles.secondaryButton} href="#" aria-label="Resume link">
+                <a className={styles.secondaryButton} href="/resume_2-24.pdf" target="_blank" rel="noopener noreferrer" aria-label="Resume link">
                   Resume
                 </a>
               </div>
