@@ -71,9 +71,10 @@ type DroneProps = {
   modelUrl: string;
   scale?: number;
   rotationOffset?: [number, number, number];
+  isMobileViewport?: boolean;
 };
 
-function Drone({ progress, modelUrl, scale = 1, rotationOffset = [0, 0, 0] }: DroneProps) {
+function Drone({ progress, modelUrl, scale = 1, rotationOffset = [0, 0, 0], isMobileViewport = false }: DroneProps) {
   const group = useRef<Group>(null);
   const gltf = useGLTF(modelUrl);
   const rotors = useMemo(() => {
@@ -101,15 +102,23 @@ function Drone({ progress, modelUrl, scale = 1, rotationOffset = [0, 0, 0] }: Dr
     const flightProgress = clamp((progress - launchThreshold) / launchDuration, 0, 1);
     const eased = flightProgress ** 1.1;
 
-    g.position.x = -eased * 3.4;
-    g.position.y = 0.6 + idleY + eased * 3.2;
-    g.position.z = 0.2 - eased * 4.2;
+    const baseXTravel = isMobileViewport ? 1.9 : 3.4;
+    const baseY = isMobileViewport ? 0.72 : 0.6;
+    const yTravel = isMobileViewport ? 2.0 : 3.2;
+    const baseZ = isMobileViewport ? 0.65 : 0.2;
+    const zTravel = isMobileViewport ? 3.2 : 4.2;
 
+    g.position.x = -eased * baseXTravel;
+    g.position.y = baseY + idleY + eased * yTravel;
+    g.position.z = baseZ - eased * zTravel;
+
+    const mobileYawCorrection = isMobileViewport ? -Math.PI / 4 : 0;
     g.rotation.x = -0.08 - eased * 0.55 + rotationOffset[0];
-    g.rotation.y = rotationOffset[1];
+    g.rotation.y = rotationOffset[1] + mobileYawCorrection;
     g.rotation.z = -0.08 + rotationOffset[2];
 
-    g.scale.setScalar(scale * (1 - eased * 0.05));
+    const mobileScaleDamp = isMobileViewport ? 0.03 : 0.05;
+    g.scale.setScalar(scale * (1 - eased * mobileScaleDamp));
 
     const rotorSpeed = 14 + eased * 12;
     rotors.forEach((r) => {
@@ -139,15 +148,28 @@ export default function ScrollDroneScene({
 }: ScrollDroneSceneProps) {
   const boundsRef = useRef<HTMLDivElement>(null);
   const { progress, isActive } = useScrollProgress(boundsRef);
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
+
+  useEffect(() => {
+    const update = () => {
+      setIsMobileViewport(window.innerWidth <= 768);
+    };
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
+
+  const camera = isMobileViewport ? { position: [2.6, 1.6, 7.2] as [number, number, number], fov: 40 } : { position: [4, 2.2, 5] as [number, number, number], fov: 45 };
+  const effectiveScale = isMobileViewport ? modelScale * 0.74 : modelScale;
 
   return (
     <div ref={boundsRef} className={className ?? "drone-canvas"}>
-      <Canvas dpr={[1, 2]} frameloop={isActive ? "always" : "never"} shadows camera={{ position: [4, 2.2, 5], fov: 45 }}>
+      <Canvas dpr={[1, 2]} frameloop={isActive ? "always" : "never"} shadows camera={camera}>
         <color attach="background" args={["#050915"]} />
         <ambientLight intensity={0.4} />
         <directionalLight position={[6, 6, 4]} intensity={1.6} castShadow shadow-mapSize={[1024, 1024]} />
         <Float speed={0.6} rotationIntensity={0} floatIntensity={0}>
-          <Drone progress={progress} modelUrl={modelUrl} scale={modelScale} rotationOffset={rotationOffset} />
+          <Drone progress={progress} modelUrl={modelUrl} scale={effectiveScale} rotationOffset={rotationOffset} isMobileViewport={isMobileViewport} />
         </Float>
         <ContactShadows position={[0, -0.45, 0]} opacity={0.35} scale={8} blur={2.8} far={2.5} />
         <Environment preset="city" />

@@ -35,4 +35,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
 
+## Favicon QA Notes
+
+- Browser tab favicons can be cached aggressively. Hard refresh (or clear favicon cache) when validating updates.
+- iOS home-screen icons are static at install time. If icon assets change, remove and re-add the shortcut.
+- Dark/light favicon switching is automatic only in browsers that support `prefers-color-scheme` for favicon links.
 

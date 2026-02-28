@@ -8,6 +8,7 @@
 .splash {
   position: relative;
   min-height: 100vh;
+  min-height: 100dvh;
   width: 100vw;
   display: grid;
   place-items: center;
@@ -19,6 +20,7 @@
   position: relative;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
 }
 
 .canvasFrame {
@@ -479,7 +481,87 @@
   }
 
   .splashCanvas {
-    height: 380px;
+    height: min(72dvh, 560px);
+    min-height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
+  .contentLayout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .railSlot {
+    width: 0;
+  }
+
+  .rail {
+    position: fixed;
+    top: 10px;
+    left: 8px;
+    width: 86px;
+    z-index: 22;
+    padding: 0;
+    background: transparent;
+  }
+
+  .railTitle {
+    display: none;
+  }
+
+  .railHidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .railVisible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .railNav {
+    display: block;
+    overflow-x: visible;
+    gap: 0;
+    padding-bottom: 0;
+    --dot: 10px;
+    --dot-active: 14px;
+    --row-h: 34px;
+    --marker-col: 16px;
+  }
+
+  .railTrack,
+  .railProgress {
+    display: block;
+    left: calc(var(--marker-col) / 2 - 1px);
+  }
+
+  .railItem {
+    min-height: var(--row-h);
+  }
+
+  .railLink {
+    border: 0;
+    border-radius: 0;
+    padding: 6px 0;
+    background: transparent;
+    grid-template-columns: var(--marker-col) 1fr;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  .storyBody {
+    padding-left: 104px;
+  }
+
+  .railDotWrap {
+    width: var(--marker-col);
+  }
+
+  .railDot,
+  .railItemActive .railDot {
+    box-shadow: none;
   }
 }
 

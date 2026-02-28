@@ -141,6 +141,7 @@ export default function Home() {
   const prefersReducedMotion = usePrefersReducedMotion();
   const splashRef = useRef<HTMLElement>(null);
 
+  const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [isInContent, setIsInContent] = useState(false);
   const [activeSection, setActiveSection] = useState<SectionId>("mission");
   const [visitedSections, setVisitedSections] = useState<Record<SectionId, boolean>>(createSectionMap(false));
@@ -161,6 +162,13 @@ export default function Home() {
   useEffect(() => {
     activeRef.current = activeSection;
   }, [activeSection]);
+
+  useEffect(() => {
+    const update = () => setIsMobileViewport(window.innerWidth <= 768);
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     let raf = 0;
@@ -190,6 +198,8 @@ export default function Home() {
       .filter((node): node is HTMLElement => node !== null);
 
     if (!sections.length) return;
+    const visibleThreshold = isMobileViewport ? 0.12 : 0.18;
+    const validationTriggerThreshold = isMobileViewport ? 0.18 : 0.35;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -202,13 +212,13 @@ export default function Home() {
             const ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
             ratiosRef.current[id] = ratio;
 
-            const visible = ratio >= 0.18;
+            const visible = ratio >= visibleThreshold;
             if (next[id] !== visible) {
               next[id] = visible;
               changed = true;
             }
 
-            if (id === "validation" && ratio >= 0.35 && !hasAnimatedValidationRef.current) {
+            if (id === "validation" && ratio >= validationTriggerThreshold && !hasAnimatedValidationRef.current) {
               hasAnimatedValidationRef.current = true;
               startMetricAnimation(prefersReducedMotion, setCounterValues);
             }
@@ -223,7 +233,7 @@ export default function Home() {
           for (const entry of entries) {
             const id = entry.target.id as SectionId;
             const ratio = entry.isIntersecting ? entry.intersectionRatio : 0;
-            if (ratio >= 0.18 && !next[id]) {
+            if (ratio >= visibleThreshold && !next[id]) {
               next[id] = true;
               changed = true;
             }
@@ -262,12 +272,12 @@ export default function Home() {
           setActiveSection(nextActive);
         }
       },
-      { threshold: [0, 0.25, 0.5, 0.75, 1] },
+      { threshold: isMobileViewport ? [0, 0.1, 0.2, 0.35, 0.5, 0.75, 1] : [0, 0.25, 0.5, 0.75, 1] },
     );
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, [prefersReducedMotion]);
+  }, [isMobileViewport, prefersReducedMotion]);
 
   const handleRailClick = (event: MouseEvent<HTMLAnchorElement>, id: SectionId) => {
     event.preventDefault();
