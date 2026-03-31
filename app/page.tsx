@@ -465,7 +465,7 @@ Beacon ESP32 PWM (38 kHz) → reflected IR → TSOP38238 array → lock + tracki
               <h2>Contact</h2>
               <p className={styles.sectionCopy}>{project.contact}</p>
               <div className={styles.contactActions}>
-                <a className={styles.primaryButton} href="mailto:jmarhefka@scu.edu">
+                <a className={styles.primaryButton} href="mailto:contact@jpmarhefka.com">
                   Email
                 </a>
                 <a className={styles.secondaryButton} href="https://www.linkedin.com/in/jp-marhefka/" target="_blank" rel="noreferrer">
