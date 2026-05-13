@@ -17,7 +17,7 @@ export function LoadingScreen({ progress }: { progress: number }) {
           <span />
         </div>
         <div>
-          <p className="loading-screen__eyebrow">Mission control boot</p>
+          <p className="loading-screen__eyebrow">Loading...</p>
           <h1>{loadingSteps[activeIndex]}</h1>
         </div>
         <div className="loading-screen__bar" aria-hidden="true">

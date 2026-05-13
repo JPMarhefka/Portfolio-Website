@@ -72,9 +72,9 @@ export function ProjectCardScroller() {
     >
       <Container className="project-scroller__sticky">
         <div className="project-scroller__intro">
-          <SectionLabel>Selected project systems</SectionLabel>
+          <SectionLabel>My Projects</SectionLabel>
           <h2 id="projects-title" className="section-heading">
-            Project cards staged like field reports, with enough signal to invite a deeper read.
+            A quick look at what each project does, how it works, and what I built.
           </h2>
         </div>
         <div className="project-scroller__cards">

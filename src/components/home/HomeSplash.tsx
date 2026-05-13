@@ -48,14 +48,13 @@ export function HomeSplash() {
     <section className="home-splash" aria-labelledby="home-title">
       <Container className="home-splash__grid">
         <div className="home-splash__content">
-          <SectionLabel>Software Engineering · Robotics · Embedded Systems</SectionLabel>
           <h1 id="home-title" className="headline">
-            Building systems that make complex behavior visible.
+            Developing systems where hardware and software work together.
           </h1>
           <p className="body-copy">
             I’m Joseph-Paul Marhefka, a Santa Clara University student building robotics,
-            embedded, and full-stack projects with a focus on instrumentation, validation,
-            and polished user experience.
+            embedded systems, and full-stack projects that connect software, hardware,
+            and real-world problem solving.
           </p>
           <div className="home-splash__actions">
             <Button type="button" onClick={scrollToProjects} variant="primary">

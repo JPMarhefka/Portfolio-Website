@@ -3,7 +3,7 @@ import { DroneMediaGallery } from "@/components/drone/DroneMediaGallery";
 import { DroneNextSteps } from "@/components/drone/DroneNextSteps";
 import { DroneProjectHero } from "@/components/drone/DroneProjectHero";
 import { DroneScrollExperience } from "@/components/drone/DroneScrollExperience";
-import { DroneSystemSection } from "@/components/drone/DroneSystemSection";
+import { DroneSystemRoadmap } from "@/components/drone/DroneSystemRoadmap";
 import { DroneTelemetrySection } from "@/components/drone/DroneTelemetrySection";
 
 export const metadata: Metadata = {
@@ -17,10 +17,9 @@ export default function DroneProjectPage() {
     <main>
       <DroneProjectHero />
       <DroneScrollExperience />
-      <DroneSystemSection />
-      <DroneTelemetrySection />
+      <DroneSystemRoadmap />
+      {/*}<DroneTelemetrySection /> {Un-comment after I update with engineering issues*/}
       <DroneMediaGallery />
-      <DroneNextSteps />
     </main>
   );
 }

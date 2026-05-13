@@ -80,11 +80,11 @@ export function DroneScene({
   return (
     <div className="drone-canvas-wrap">
       <DroneStudioScene
-        background="#dfe7e8"
+        background={null}
         camera={{ position: [0, 1.4, 6], fov: 38 }}
         dpr={[1, 1.25]}
         fallback={<DroneSceneCanvasFallback />}
-        showContactShadows
+        showContactShadows={false}
       >
         <Suspense
           fallback={

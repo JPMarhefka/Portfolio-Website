@@ -11,22 +11,22 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: "autonomous-laser-guided-drone",
-    title: "Autonomous Laser Guided Drone",
-    status: "Flagship case study",
-    tags: ["Robotics", "Embedded", "Telemetry", "3D"],
+    title: "Autonomous Laser-Tracking Drone Prototype",
+    status: "FLAGSHIP PROJECT",
+    tags: ["ROBOTICS", "ESP32", "TELEMETRY", "LASER TRACKING", "EMBEDDED C++"],
     summary:
-      "An IR beacon tracking drone prototype built around lock confirmation, coarse-to-fine sensing, altitude fallback, and telemetry-first observability.",
-    cta: "Open case study",
+      "A drone prototype that follows a laser target reflected off walls or surfaces, using signal lock, directional sensing, altitude fallback, and live telemetry.",
+    cta: "Learn More",
     href: "/work/autonomous-laser-guided-drone",
   },
   {
     id: "deal-scout",
     title: "DibSift",
-    status: "Interactive demo",
-    tags: ["Chrome Extension", "Marketplace Tools", "AI Ranking"],
+    status: "CHROME EXTENSION",
+    tags: ["CHROME EXTENSION", "MARKETPLACE TOOL", "AI RANKING", "BUYER WORKFLOW"],
     summary:
-      "A Chrome extension for saving Facebook Marketplace listings, comparing messy product details, and turning selected items into offer-ready AI buying advice.",
-    cta: "Open demo",
+      "A Chrome extension for collecting Facebook Marketplace listings, organizing product details, comparing options, and generating AI-powered buying recommendations.",
+    cta: "Learn More",
     href: "/work/dibsift",
   },
   {

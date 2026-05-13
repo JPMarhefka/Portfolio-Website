@@ -27,7 +27,7 @@ export function ProjectTeaserCard({
         ))}
       </div>
       <Button href={project.href} disabled={!project.href} variant={project.href ? "primary" : "secondary"}>
-        {project.cta} {project.href ? <ArrowRight size={16} aria-hidden="true" /> : null}
+        {project.cta} {project.href ? <ArrowRight size={16} aria-hidden="true" style={{marginLeft: '4px'}}/> : null}
       </Button>
     </article>
   );

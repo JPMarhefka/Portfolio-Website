@@ -98,46 +98,49 @@ export function DroneScrollExperience() {
         } as CSSProperties
       }
     >
-      <Container className="drone-scroll__intro">
-        <SectionLabel>Scroll activated 3D walkthrough</SectionLabel>
-        <h2 id="walkthrough-title" className="section-heading">
-          A guided inspection system for the drone’s sensing, control, and telemetry layers.
-        </h2>
-      </Container>
-
       <Container className="drone-scroll__stage">
-        <div className="drone-scroll__sticky">
-          {useStaticMode ? (
-            <DroneScrollStaticVisual />
-          ) : (
-            <DroneScene progress={snappedSceneProgress} reducedMotion={false} />
-          )}
-          <div className="drone-scroll__progress" aria-hidden="true">
-            {droneHotspots.map((hotspot, index) => (
-              <span key={hotspot.id} data-active={index <= displayedActiveIndex} />
-            ))}
+        <div className="drone-scroll__sticky-frame">
+          <div className="drone-scroll__intro">
+            <SectionLabel>3D Feature Walkthrough</SectionLabel>
+            <h2 id="walkthrough-title" className="section-heading">
+              A guided visual inspection of the drone’s sensing and control layers.
+            </h2>
           </div>
-        </div>
-        <div className="drone-scroll__cards">
-          {droneHotspots.map((hotspot, index) => {
-            const position =
-              index < displayedActiveIndex ? "before" : index > displayedActiveIndex ? "after" : "active";
-
-            return (
-              <div
-                className="drone-scroll__card-shell"
-                key={hotspot.id}
-                style={{
-                  zIndex: position === "active" ? droneHotspots.length : droneHotspots.length - index,
-                  pointerEvents: index === displayedActiveIndex ? "auto" : "none",
-                }}
-                data-position={position}
-                aria-hidden={!useStaticMode && index !== displayedActiveIndex}
-              >
-                <DroneInspectionCard hotspot={hotspot} isActive={index === displayedActiveIndex} />
+          <div className="drone-scroll__workspace">
+            <div className="drone-scroll__sticky">
+              {useStaticMode ? (
+                <DroneScrollStaticVisual />
+              ) : (
+                <DroneScene progress={snappedSceneProgress} reducedMotion={false} />
+              )}
+              <div className="drone-scroll__progress" aria-hidden="true">
+                {droneHotspots.map((hotspot, index) => (
+                  <span key={hotspot.id} data-active={index <= displayedActiveIndex} />
+                ))}
               </div>
-            );
-          })}
+            </div>
+            <div className="drone-scroll__cards">
+              {droneHotspots.map((hotspot, index) => {
+                const position =
+                  index < displayedActiveIndex ? "before" : index > displayedActiveIndex ? "after" : "active";
+
+                return (
+                  <div
+                    className="drone-scroll__card-shell"
+                    key={hotspot.id}
+                    style={{
+                      zIndex: position === "active" ? droneHotspots.length : droneHotspots.length - index,
+                      pointerEvents: index === displayedActiveIndex ? "auto" : "none",
+                    }}
+                    data-position={position}
+                    aria-hidden={!useStaticMode && index !== displayedActiveIndex}
+                  >
+                    <DroneInspectionCard hotspot={hotspot} isActive={index === displayedActiveIndex} />
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </Container>
     </section>

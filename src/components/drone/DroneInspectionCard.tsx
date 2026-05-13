@@ -13,8 +13,9 @@ export function DroneInspectionCard({
       <h3>{hotspot.title}</h3>
       <p>{hotspot.description}</p>
       <div className="inspection-card__tags">
-        <span>Scroll linked</span>
-        <span>Editable hotspot</span>
+        {hotspot.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
       </div>
     </article>
   );

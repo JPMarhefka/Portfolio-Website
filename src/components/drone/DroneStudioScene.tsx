@@ -16,7 +16,7 @@ export const droneStudioTuning = {
 };
 
 type DroneStudioSceneProps = {
-  background?: string;
+  background?: string | null;
   children: ReactNode;
   className?: string;
   camera?: CanvasProps["camera"];
@@ -74,7 +74,7 @@ export function DroneStudioScene({
       }}
     >
       <WebGLContextLossHandler onContextLost={handleContextLost} />
-      <color attach="background" args={[background]} />
+      {background ? <color attach="background" args={[background]} /> : null}
       <ambientLight intensity={0.25} />
       <directionalLight
         castShadow={enableShadows}
