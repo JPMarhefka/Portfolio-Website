@@ -1269,6 +1269,211 @@ img {
     radial-gradient(circle at 22% 30%, rgba(242, 177, 90, 0.08), transparent 26rem);
 }
 
+.mechatronics-hero {
+  min-height: 100svh;
+  padding: calc(var(--header-height) + 46px) 0 48px;
+  display: grid;
+  align-items: center;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(105, 217, 239, 0.12), transparent 26rem),
+    linear-gradient(180deg, rgba(7, 9, 11, 0.1), rgba(16, 23, 29, 0.42));
+}
+
+.mechatronics-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.9fr);
+  gap: clamp(56px, 5vw, 84px);
+  align-items: center;
+}
+
+.mechatronics-hero .page-headline {
+  max-width: 9ch;
+  font-size: clamp(3rem, 6.25vw, 5.65rem);
+}
+
+.mechatronics-hero .body-copy {
+  max-width: 760px;
+  margin: 22px 0 0;
+}
+
+.mechatronics-hero__stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.mechatronics-hero__stats .status-pill {
+  flex: 0 0 auto;
+}
+
+.mechatronics-video-card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #05070a;
+  box-shadow: var(--shadow);
+}
+
+.mechatronics-video-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: min(680px, calc(100svh - var(--header-height) - 96px));
+  object-fit: cover;
+  background: #05070a;
+}
+
+.mechatronics-video-card span,
+.mechatronics-gallery__item figcaption {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  z-index: 1;
+  padding: 7px 9px;
+  border: 1px solid rgba(105, 217, 239, 0.28);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(7, 9, 11, 0.72);
+  font: 0.68rem/1 var(--font-mono), monospace;
+  text-transform: uppercase;
+}
+
+.mechatronics-card-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 42px;
+  scroll-margin-top: calc(var(--header-height) + 24px);
+}
+
+.mechatronics-card,
+.mechatronics-pipeline__step {
+  padding: 22px;
+}
+
+.mechatronics-card > *,
+.mechatronics-pipeline__step > * {
+  position: relative;
+}
+
+.mechatronics-card svg {
+  color: var(--accent-cyan);
+}
+
+.mechatronics-card h3,
+.mechatronics-pipeline__step h3 {
+  margin: 14px 0 10px;
+  font-size: clamp(1.25rem, 2vw, 1.65rem);
+  line-height: 1.1;
+}
+
+.mechatronics-card p,
+.mechatronics-pipeline__step p {
+  margin: 0;
+  color: var(--muted-strong);
+  line-height: 1.62;
+}
+
+.mechatronics-architecture {
+  background:
+    linear-gradient(180deg, transparent, rgba(16, 23, 29, 0.44), transparent),
+    radial-gradient(circle at 76% 30%, rgba(105, 217, 239, 0.08), transparent 26rem);
+}
+
+.mechatronics-pipeline {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 42px;
+}
+
+.mechatronics-pipeline__step {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: rgba(16, 23, 29, 0.72);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+}
+
+.mechatronics-pipeline__step:not(:last-child)::after {
+  position: absolute;
+  top: 42px;
+  right: -15px;
+  z-index: 2;
+  width: 14px;
+  height: 1px;
+  background: rgba(105, 217, 239, 0.45);
+  content: "";
+}
+
+.mechatronics-pipeline__step > span {
+  color: var(--accent-cyan);
+  font: 0.72rem/1 var(--font-mono), monospace;
+  text-transform: uppercase;
+}
+
+.mechatronics-spotlight {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 0.82fr);
+  gap: 46px;
+  align-items: center;
+}
+
+.mechatronics-spotlight__media,
+.mechatronics-gallery__item {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.mechatronics-spotlight__media {
+  min-height: 520px;
+}
+
+.mechatronics-spotlight__media img,
+.mechatronics-gallery__item img {
+  object-fit: cover;
+}
+
+.mechatronics-callout {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  margin-top: 26px;
+  padding: 16px;
+  border: 1px solid rgba(105, 217, 239, 0.2);
+  border-radius: var(--radius);
+  color: var(--muted-strong);
+  background: rgba(105, 217, 239, 0.06);
+  line-height: 1.55;
+}
+
+.mechatronics-callout svg {
+  flex: 0 0 auto;
+  color: var(--accent-cyan);
+}
+
+.mechatronics-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 42px;
+}
+
+.mechatronics-gallery__item {
+  min-height: 460px;
+}
+
+.mechatronics-gallery__item:nth-child(3) {
+  min-height: 360px;
+}
+
 .field-notes {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2487,6 +2692,11 @@ img {
   .drone-hero__grid,
   .drone-scroll__stage,
   .drone-scroll__workspace,
+  .mechatronics-hero__grid,
+  .mechatronics-card-grid,
+  .mechatronics-pipeline,
+  .mechatronics-spotlight,
+  .mechatronics-gallery,
   .dibsift-demo,
   .dibsift-settings,
   .dibsift-captures,
@@ -2537,6 +2747,45 @@ img {
   .contact-cta__inner,
   .drone-next__inner {
     padding: 22px;
+  }
+
+  .mechatronics-hero {
+    min-height: auto;
+    padding: calc(var(--header-height) + 34px) 0 52px;
+  }
+
+  .mechatronics-hero .page-headline {
+    font-size: clamp(2.45rem, 11vw, 3.6rem);
+  }
+
+  .mechatronics-hero__stats {
+    max-width: 15rem;
+  }
+
+  .mechatronics-video-card video {
+    aspect-ratio: 4 / 5;
+    max-height: 560px;
+  }
+
+  .mechatronics-card-grid,
+  .mechatronics-pipeline,
+  .mechatronics-gallery {
+    gap: 18px;
+  }
+
+  .mechatronics-pipeline__step:not(:last-child)::after {
+    top: auto;
+    right: auto;
+    bottom: -18px;
+    left: 24px;
+    width: 1px;
+    height: 18px;
+  }
+
+  .mechatronics-spotlight__media,
+  .mechatronics-gallery__item,
+  .mechatronics-gallery__item:nth-child(3) {
+    min-height: 320px;
   }
 
   .dibsift-demo {

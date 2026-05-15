@@ -32,11 +32,12 @@ export const projects: Project[] = [
   {
     id: "mechatronics-robot",
     title: "Mechatronics Robot",
-    status: "Coming soon",
-    tags: ["Arduino", "PID", "Sensors", "Competition"],
+    status: "1ST PLACE ROBOT",
+    tags: ["ARDUINO", "PID", "STATE MACHINE", "SERVO ACTUATION", "COMPETITION"],
     summary:
-      "A competition robot project involving line following, sensor logic, servo control, and state-based behavior.",
-    cta: "Page coming soon",
+      "A first-place autonomous bartending robot that line-followed a winding course, clocked in, read the order, and pulled three taps in a perfect run.",
+    cta: "Learn More",
+    href: "/work/mechatronics-robot",
   },
   {
     id: "portfolio-website",
