@@ -1623,6 +1623,11 @@ img {
   line-height: 1;
 }
 
+.dibsift-release-card__links {
+  display: grid;
+  gap: 10px;
+}
+
 .dibsift-release-card a {
   display: inline-flex;
   align-items: center;
@@ -1635,6 +1640,11 @@ img {
   color: var(--text);
   background: rgba(84, 210, 160, 0.09);
   font-weight: 900;
+}
+
+.dibsift-release-card a.dibsift-release-card__source-link {
+  border-color: rgba(105, 217, 239, 0.32);
+  background: rgba(105, 217, 239, 0.08);
 }
 
 .dibsift-extension {

@@ -6,6 +6,7 @@ import { dibsiftAnalysis, dibsiftGoal, dibsiftListings, type DibsiftListing, typ
 
 const apiKeyPlaceholder = "demo-gemini-key-stored-locally";
 const dibsiftRepoUrl = "https://github.com/JPMarhefka/DibSift";
+const dibsiftChromeStoreUrl = "https://chromewebstore.google.com/detail/dibsift-facebook-deal-fin/fleacbhgimineiiadefkladehonejmic?utm_source=item-share-cb";
 const dibsiftFallbackVersion = "v1.0.0";
 
 type ReleaseInfo = {
@@ -254,7 +255,8 @@ export function DibsiftDemo() {
           <h1 className="page-headline">DibSift</h1>
           <p className="body-copy">
             Formerly Deal Scout, DibSift saves visible Facebook Marketplace listings, normalizes the messy
-            details, and turns selected items into a practical buying recommendation.
+            details, and turns selected items into a practical buying recommendation. The extension is now
+            published on the Chrome Web Store.
           </p>
         </div>
         <div className="dibsift-release-card" aria-label="DibSift release and repository">
@@ -268,9 +270,14 @@ export function DibsiftDemo() {
               </time>
             ) : null}
           </div>
-          <a href={releaseInfo.url} target="_blank" rel="noreferrer">
-            Try the latest version <ExternalLink size={14} aria-hidden="true" />
-          </a>
+          <div className="dibsift-release-card__links">
+            <a href={dibsiftChromeStoreUrl} target="_blank" rel="noreferrer">
+              Install from Chrome Web Store <ExternalLink size={14} aria-hidden="true" />
+            </a>
+            <a className="dibsift-release-card__source-link" href={releaseInfo.url} target="_blank" rel="noreferrer">
+              View source on GitHub <ExternalLink size={14} aria-hidden="true" />
+            </a>
+          </div>
         </div>
       </section>
 

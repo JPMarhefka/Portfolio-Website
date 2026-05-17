@@ -25,7 +25,7 @@ export const projects: Project[] = [
     status: "CHROME EXTENSION",
     tags: ["CHROME EXTENSION", "MARKETPLACE TOOL", "AI RANKING", "BUYER WORKFLOW"],
     summary:
-      "A Chrome extension for collecting Facebook Marketplace listings, organizing product details, comparing options, and generating AI-powered buying recommendations.",
+      "A published Chrome extension for collecting Facebook Marketplace listings, organizing product details, comparing options, and generating AI-powered buying recommendations.",
     cta: "Learn More",
     href: "/work/dibsift",
   },
