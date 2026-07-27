@@ -29,7 +29,7 @@ src/app/partuno/page.tsx
 src/app/partuno/partuno.module.css
 src/components/partuno/PartunoWaitlistForm.tsx
 src/components/partuno/submitPartunoWaitlist.ts
-src/components/partuno/submitPartunoWaitlist.test.ts
+src/components/partuno/submitPartunoWaitlist.test.mjs
 public/images/partuno-logo.png
 ```
 
