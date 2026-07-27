@@ -28,10 +28,12 @@ Create the page within the existing Next.js App Router project:
 src/app/partuno/page.tsx
 src/app/partuno/partuno.module.css
 src/components/partuno/PartunoWaitlistForm.tsx
+src/components/partuno/submitPartunoWaitlist.ts
+src/components/partuno/submitPartunoWaitlist.test.ts
 public/images/partuno-logo.png
 ```
 
-The root layout continues to provide the existing portfolio header and footer. The page uses `next/image` for the logo and a small client component only for form submission state.
+The root layout continues to provide the existing portfolio header and footer. The page uses `next/image` for the logo and a small client component only for form submission state. A pure helper owns the Formspree request so the submission behavior can be tested independently.
 
 ## Page Layout
 
@@ -48,26 +50,26 @@ The primary content order is:
 7. Early-access email form
 8. Small note: `Partuno is currently in development.`
 
-The page reuses the site's existing dark background, typography, cyan and blue accents, borders, spacing conventions, and reduced-motion behavior. It should not introduce a separate design system.
+The page reuses the site's existing dark background, typography, cyan and blue accents, borders, spacing conventions, and reduced-motion behavior. It does not introduce a separate design system.
 
 ## Waitlist Form
 
-Formspree handles submissions. The client posts to the endpoint supplied through the public environment variable:
+Formspree handles submissions through the public endpoint:
 
 ```text
-NEXT_PUBLIC_PARTUNO_FORMSPREE_ENDPOINT
+https://formspree.io/f/mwvgagrn
 ```
 
-The production value will use the full Formspree endpoint created for the Partuno waitlist. The endpoint is deployment configuration and is not committed to the repository.
+The endpoint is a public form identifier rather than a secret, so it is committed directly in the submission helper. This keeps the first deployment free of extra environment-variable setup.
 
 Form behavior:
 
-- Require a syntactically valid email address
+- Require a syntactically valid email address through the browser's email input validation
+- Trim surrounding whitespace before submission
 - Disable the submit button while sending
 - Button text changes from `Join the Waitlist` to `Joining...`
-- On success, replace the form feedback with `You're on the list.` and clear the field
+- On success, display `You're on the list.` and clear the field
 - On failure, show `Something went wrong. Please try again.`
-- If the endpoint is not configured, disable submission and show `Waitlist signups are not available yet.`
 - Include an accessible label and `aria-live` status feedback
 
 No email addresses are stored in the portfolio repository or application runtime.
@@ -87,6 +89,7 @@ The form treats non-successful Formspree responses and network failures as submi
 
 Before merge:
 
+- Run the focused Partuno submission tests
 - Run the repository lint command
 - Run a production build
 - Confirm `/partuno` renders at desktop and mobile widths
@@ -95,8 +98,7 @@ Before merge:
 - Confirm successful Formspree submission displays the success state
 - Confirm failed submission displays the error state and allows retrying
 - Confirm keyboard focus and visible labels work correctly
-- Confirm the page still renders with the Formspree environment variable missing
 
 ## Deployment
 
-The page ships through the portfolio's existing deployment. Before enabling live submissions, create the Partuno form in Formspree and add `NEXT_PUBLIC_PARTUNO_FORMSPREE_ENDPOINT` to the portfolio project's production environment variables. No DNS or hosting changes are required.
+The page ships through the portfolio's existing deployment. The Formspree endpoint is already configured in the code, so no DNS, hosting, database, or environment-variable changes are required.
